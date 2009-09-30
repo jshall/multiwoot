@@ -1,0 +1,31 @@
+body {
+	font-face: Segoe UI;
+	height: 150px;
+	margin: 5px;
+}
+#sites {
+	text-align: center;
+	border: 2 inset;
+}
+#sites .panel {
+	height: 23px;
+	margin: 2px;
+	padding: 2px;
+	float: left;
+	border: 2 outset;
+}
+#sites .panel img {
+	height: 100%;
+}
+#sites .desc {
+	clear: both;
+	font-size: 0.6em;
+}
+#options {
+	width: 226px;
+	margin-top: 5px;
+}
+#interval {
+	text-align: right;
+	padding-right: 10px;
+}
