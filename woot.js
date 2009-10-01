@@ -9,13 +9,14 @@ var dimmer = {
 	},
 	hide: function hide() {
 		this.active = false;
-		this.timer = setTimeout(function detailCallback() {dimmer.fade.apply(dimmer, [dimmer.low])}, 200);
+		this.timer = setTimeout(this.fadeCallback(this.low), 200);
 	},
+	fadeCallback: callback('fade'),
 	fade: function fade(prcnt) {
 		// item image back to 100% opacity and hide the text
 		if (prcnt < 100) {
 			$('title').style.visibility = (this.active) ? 'visible' : 'hidden';
-			if (!this.active) this.timer = setTimeout(function detailCallback() {dimmer.fade.apply(dimmer, [prcnt+1])}, 5);
+			if (!this.active) this.timer = setTimeout(this.fadeCallback(prcnt+1), 5);
 			$('itemImage').style.filter = "alpha(opacity="+prcnt+")";
 		} else {
 			$('itemImage').style.filter = "alpha(opacity=100)";
@@ -84,9 +85,9 @@ var Woot = function(list) {
 	this.index = -1;
 	this.current = list[0];
 	var self = this;
-	this.resizeCallback = function resizeCallback() {self.resize.apply(self)};
-	this.updateCallback = function updateCallback() {self.update.apply(self)};
-	this.settingsCallback = function settingsCallback() {self.applySettings.apply(self)};
+	this.resizeCallback = callback('resize');
+	this.updateCallback = callback('update');
+	this.settingsCallback = callback('settings');
 };
 Woot.prototype = {
 	autoCycle: true,
@@ -96,12 +97,13 @@ Woot.prototype = {
 		handle: null,
 		start: function start() {
 			this.tick();
-			this.handle = setInterval(this.tick, this.interval);
+			this.handle = setInterval(this.tickCallback(), this.interval);
 		},
 		reset: function reset() {
 			clearInterval(this.handle);
-			this.handle = setInterval(this.tick, this.interval);
+			this.handle = setInterval(this.tickCallback(), this.interval);
 		},
+		tickCallback: callback('tick'),
 		tick: function tick() {
 			if (System.Gadget.Flyout.show || !woot.autoCycle || (woot.current.wootoff && woot.haltCycle))
 				woot.update();
@@ -180,7 +182,7 @@ Woot.prototype = {
 			$('title').style.fontSize="8pt";
 			$('price').style.fontSize="10pt";
 			cssStyles('.light')[0].width=20;
-			global().size = 0;
+			window.size = 0;
 			$('itemImage').className = "w";
 		} else {
 			with(document.body.style) width=296, height=232, margin=14,
@@ -190,7 +192,7 @@ Woot.prototype = {
 			$('title').style.fontSize="12pt";
 			$('price').style.fontSize="14pt";
 			cssStyles('.light')[0].width=40;
-			global().size = 1;
+			window.size = 1;
 			$('itemImage').className = "h";
 		}
 		$('prefix').style.left = $('logo').offsetLeft+34;

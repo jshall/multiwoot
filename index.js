@@ -31,7 +31,7 @@ window.onload = function() {
 		System.Gadget.Flyout.onHide = woot.updateCallback;
 		System.Gadget.onSettingsClosed = woot.settingsCallback;
 	} catch(ex) {
-		global().System = {Gadget:{docked:true,Flyout:{show:false,document:null}}};
+		window.System = {Gadget:{docked:true,Flyout:{show:false,document:null}}};
 		System.Gadget.watch("docked", function (p,o,n){setTimeout(woot.resizeCallback,5);return n});
 		System.Gadget.Flyout.watch("show", function (p,o,n){setTimeout(woot.updateCallback,5);return n});
 	}
