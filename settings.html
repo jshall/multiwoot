@@ -2,23 +2,19 @@
 	<head>
 		<link type="text/css" href="settings.css" rel="stylesheet" />
 		<script type="text/javascript" src="tools.js"></script>
+		<script type="text/javascript" src="woot.js"></script>
 		<script type="text/javascript" src="settings.js"></script>
 	</head>
 	<body onload="load()">
 		<div id="sites">
-			<div id="0" class="panel"><img src="www.png"></div>
-			<div id="1" class="panel"><img src="wine.png"></div>
-			<div id="2" class="panel"><img src="shirt.png"></div>
-			<div id="3" class="panel"><img src="sellout.png"></div>
-			<div id="4" class="panel"><img src="kids.png"></div>
-			<div class="desc">You can reorder and hide sites here.</div>
+			<div id="desc">You can reorder and hide sites here.</div>
 		</div>
 		<form id="options">
 			<div>Refresh interval (seconds): <input id="interval" type="text" size="3" value="2" /></div>
 			<div style="margin-left:1em;">
 				<div><input id="auto" type="checkbox" checked="checked" />Automatically cycle woot items</div>
 				<div><input id="halt" type="checkbox" checked="checked" />Halt auto-cycle during wootoff</div>
-			</div>        
+			</div>
 		</form>
 	</body>
 </html>

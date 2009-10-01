@@ -8,6 +8,7 @@ body {
 	border: 2 inset;
 }
 #sites .panel {
+	background-color: white;
 	height: 23px;
 	margin: 2px;
 	padding: 2px;
@@ -17,7 +18,7 @@ body {
 #sites .panel img {
 	height: 100%;
 }
-#sites .desc {
+#desc {
 	clear: both;
 	font-size: 0.6em;
 }
@@ -26,6 +27,7 @@ body {
 	margin-top: 5px;
 }
 #interval {
+	width: 2.5em;
 	text-align: right;
-	padding-right: 10px;
+	padding-right: 5px;
 }
