@@ -195,7 +195,7 @@ Woot.prototype = {
 			window.size = 1;
 			$('itemImage').className = "h";
 		}
-		$('prefix').style.left = $('logo').offsetLeft+34;
+		$('prefix').style.left = $('logo').offsetLeft+27;
 		this.current.show();
 	},
 	applySettings: function applySettings() {

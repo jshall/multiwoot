@@ -22,7 +22,8 @@ body {font-family:Segoe UI;}
 	height:135;
 }
 #logo {
-	height: 31px;
+	margin-top: 2px;
+	height: 27px;
 }
 #logoDiv {
 	width: 100%;
@@ -38,11 +39,11 @@ body {font-family:Segoe UI;}
 
 #divider {
 	top:35;
-	left:0;
-	width:100%;
+	left:3%;
+	width:94%;
 	height:3;
 	overflow:hidden;
-	background-color:#999999;
+	background-color:#E2E2E2;
 }
 #meter {
 	background-color:#FFCD04;
