@@ -149,7 +149,7 @@ Woot.prototype = {
 					if (xml.selectSingleNode("//woot:teaser"))
 					    data.teaser  = xml.selectSingleNode("//woot:teaser").text;
 					else data.teaser = "";
-					data.description = xml.selectSingleNode("//description").text;
+					data.description = xml.selectSingleNode("//item/description").text;
 					data.expires     = new Date(this.getResponseHeader("Expires"));
 				} catch(ex) {
 					alert('Bad data. Proxy?');
