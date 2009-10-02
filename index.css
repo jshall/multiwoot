@@ -43,10 +43,12 @@ body {font-family:Segoe UI;}
 	width:94%;
 	height:3;
 	overflow:hidden;
+	text-align: center;
 	background-color:#E2E2E2;
 }
 #meter {
-	background-color:#FFCD04;
+	position: relative;
+	background-color: #FFCD04;
 }
 
 #contentArea {

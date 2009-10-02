@@ -143,7 +143,7 @@ Woot.prototype = {
 					data.soldout     = (xml.selectSingleNode("//woot:soldout").text == "True");
 					data.progress    = xml.selectSingleNode("//woot:soldoutpercentage").text;
 					data.progress    = 100 - (data.progress * 100) + '%';
-					if (!data.wootoff) data.progress = '0';
+					if (data.soldout || data.progress == '100%') data.progress = '0';
 					
 					data.subtitle    = xml.selectSingleNode("//woot:subtitle").text;
 					if (xml.selectSingleNode("//woot:teaser"))
