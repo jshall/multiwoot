@@ -2,17 +2,17 @@ var dimmer = {
 	timer: null,
 	active: false,
 	low: 25,
-	show: function show() {
+	show: function() {
 		clearTimeout(this.timer);
 		this.active = true;
 		this.fade(this.low);
 	},
-	hide: function hide() {
+	hide: function() {
 		this.active = false;
 		this.timer = setTimeout(this.fadeCallback(this.low), 200);
 	},
 	fadeCallback: callback('fade'),
-	fade: function fade(prcnt) {
+	fade: function(prcnt) {
 		// item image back to 100% opacity and hide the text
 		if (prcnt < 100) {
 			$('title').style.visibility = (this.active) ? 'visible' : 'hidden';
@@ -39,7 +39,7 @@ var Data = function(prefix, logoColor, backgroundColor, textareaColor) {
 	this.progress = null;
 };
 Data.prototype = {
-	show: function show() {
+	show: function() {
 		$('logo').style.backgroundColor = this.logoColor;
 		$('prefixImage').src = this.prefix+'.png';
 		
@@ -80,38 +80,45 @@ Data.prototype = {
 		}
 	}
 };
-var Woot = function(list) {
-	this.list = list;
-	this.index = -1;
-	this.current = list[0];
+var Woot = function(/* list of data objects, not an array */) {
+	this.sites = {};
+	for( var i = 0; arguments[i]; i++ ) {
+		if (arguments[i].prefix) {
+			this.sites[arguments[i].prefix] = arguments[i];
+			alert(arguments[i].prefix);
+		}
+	}
+	this.current = arguments[0];
+	this.applySettings();
+	this.timer.reset(this);
+	this.resize();
 	var self = this;
-	this.resizeCallback = callback('resize');
-	this.updateCallback = callback('update');
-	this.settingsCallback = callback('settings');
+	this.resizeCallback = function resizeCallback() {self.resize.apply(self)};
+	this.updateCallback = function updateCallback() {self.update.apply(self)};
+	this.settingsCallback = function settingsCallback() {self.applySettings.apply(self)};
 };
 Woot.prototype = {
 	autoCycle: true,
 	haltCycle: true,
 	timer: {
-		interval: 5000,
 		handle: null,
-		start: function start() {
-			this.tick();
-			this.handle = setInterval(this.tickCallback(), this.interval);
+		start: function(context) {
+			this.tick(context);
+			this.handle = setInterval(this.tickCallback(context), this.interval);
 		},
-		reset: function reset() {
+		reset: function(context) {
 			clearInterval(this.handle);
-			this.handle = setInterval(this.tickCallback(), this.interval);
+			this.handle = setInterval(this.tickCallback(context), this.interval);
 		},
 		tickCallback: callback('tick'),
-		tick: function tick() {
-			if (System.Gadget.Flyout.show || !woot.autoCycle || (woot.current.wootoff && woot.haltCycle))
-				woot.update();
+		tick: function(context) {
+			if( System.Gadget.Flyout.show || !context.autoCycle || (context.current.wootoff && context.haltCycle) )
+				context.update();
 			else
-				woot.next(true);
+				context.next(true);
 		}
 	},
-	update: function update() {
+	update: function() {
 		if (!this.current.expires || this.current.expires <= new Date()) {
 			//alert('Fetching ' + this.current.prefix + '.woot.com ...');
 			var req = new XMLHttpRequest();
@@ -123,18 +130,18 @@ Woot.prototype = {
 			this.current.show();
 		}
 	},
-	connectionStateHandler: function connectionStateHandler() {
+	connectionStateHandler: function() {
 		with(this) if (readyState == 4) {
 			/*if ($('msg').innerText && $('msg').innerText.match(/fetch/i)) alert('');*/
 			if (responseXML == null) {
 				alert('No response');
 			} else {
 				try {
-					data.link        = responseXML.selectSingleNode("//link").text;
-					data.title       = responseXML.selectSingleNode("//title").text;
+					data.link        = responseXML.selectSingleNode("//item/link").text;
+					data.title       = responseXML.selectSingleNode("//item/title").text;
 					data.image       = Array(
-						responseXML.selectSingleNode("//woot:thumbnailimage").text,
-						responseXML.selectSingleNode("//woot:standardimage").text);
+					                   responseXML.selectSingleNode("//woot:thumbnailimage").text,
+					                   responseXML.selectSingleNode("//woot:standardimage").text);
 					data.price       = responseXML.selectSingleNode("//woot:price").text;
 					data.buyIt       = responseXML.selectSingleNode("//woot:purchaseurl").text;
 					data.wootoff     = (responseXML.selectSingleNode("//woot:wootoff").text == "True");
@@ -155,23 +162,19 @@ Woot.prototype = {
 			}
 			
 			data.show();
-			alert('clean');
 		}
 	},
-	go: function go(indx, skipTimerReset) {
-		this.index = indx;
-		this.current = this.list[this.index];
+	prev: function(skipTimerReset) {
+		this.current = this.current.prev;
 		this.update();
-		var self = this;
-		if (!skipTimerReset) this.timer.reset(self);
+		if (!skipTimerReset) this.timer.reset(this);
 	},
-	prev: function prev(skipTimerReset) {
-		this.go((this.index + this.list.length - 1) % this.list.length, skipTimerReset);
+	next: function(skipTimerReset) {
+		this.current = this.current.next;
+		this.update();
+		if (!skipTimerReset) this.timer.reset(this);
 	},
-	next: function next(skipTimerReset) {
-		this.go((this.index + 1) % this.list.length, skipTimerReset);
-	},
-	resize: function resize() {
+	resize: function() {
 		if (System.Gadget.docked) {
 			with(document.body.style) width=130, height=145, margin=4,
 				background="url(backSmall.png) no-repeat";
@@ -196,12 +199,19 @@ Woot.prototype = {
 		$('prefix').style.left = $('logo').offsetLeft+27;
 		this.current.show();
 	},
-	applySettings: function applySettings() {
-		if (System.Gadget.Settings && System.Gadget.Settings.read("interval")) {
-			this.timer.interval = System.Gadget.Settings.read("interval") * 1000;
-			this.timer.reset();
-			this.autoCycle = System.Gadget.Settings.read("auto");
-			this.haltCycle = System.Gadget.Settings.read("halt");
+	applySettings: function() {
+		var order = System.Gadget.Settings.read("order").split(/,/);
+		for( var i=0; order[i]; i++ ) {
+			var j = order[i+1] ? i+1 : 0;
+			while( order[j].match(/-/) ) j = order[j+1] ? j+1 : 0;
+			this.sites[order[i]].next = this.sites[order[j]];
+			this.sites[order[j]].prev = this.sites[order[i]];
+			if( j > i + 1 ) i = j - 1;
 		}
+		this.timer.interval =
+			System.Gadget.Settings.read("interval") * 1000; 
+			this.timer.reset(this);
+		this.autoCycle = System.Gadget.Settings.read("auto");
+		this.haltCycle = System.Gadget.Settings.read("halt");
 	}
 }

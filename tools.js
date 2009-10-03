@@ -11,7 +11,7 @@ function cssStyles(selector) {
 	return a;
 }
 
-function callback(func) {
+function callback(func) { 
 	return function() {
 		var self = this;
 		var args = arguments;
@@ -21,4 +21,18 @@ function callback(func) {
 	}
 }
 
-if (!Object.prototype.watch) Object.prototype.watch = function () {};
+if( !window.System ) {
+	window.System = {
+		Gadget:{
+			docked:true,
+			Flyout:{
+				show:false,
+				document:null
+			},
+			Settings:{
+				read:function(name){return this[name]},
+				write:function(name, value){this[name] = value}
+			}
+		}
+	};
+}
