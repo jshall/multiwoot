@@ -124,33 +124,31 @@ Woot.prototype = {
 		}
 	},
 	connectionStateHandler: function connectionStateHandler() {
-		if (this.readyState == 4) {
+		with(this) if (readyState == 4) {
 			/*if ($('msg').innerText && $('msg').innerText.match(/fetch/i)) alert('');*/
-			var xml = this.responseXML;
-			var data = this.data;
-			if (xml == null) {
+			if (responseXML == null) {
 				alert('No response');
 			} else {
 				try {
-					data.link        = xml.selectSingleNode("//link").text;
-					data.title       = xml.selectSingleNode("//title").text;
+					data.link        = responseXML.selectSingleNode("//link").text;
+					data.title       = responseXML.selectSingleNode("//title").text;
 					data.image       = Array(
-						xml.selectSingleNode("//woot:thumbnailimage").text,
-						xml.selectSingleNode("//woot:standardimage").text);
-					data.price       = xml.selectSingleNode("//woot:price").text;
-					data.buyIt       = xml.selectSingleNode("//woot:purchaseurl").text;
-					data.wootoff     = (xml.selectSingleNode("//woot:wootoff").text == "True");
-					data.soldout     = (xml.selectSingleNode("//woot:soldout").text == "True");
-					data.progress    = xml.selectSingleNode("//woot:soldoutpercentage").text;
+						responseXML.selectSingleNode("//woot:thumbnailimage").text,
+						responseXML.selectSingleNode("//woot:standardimage").text);
+					data.price       = responseXML.selectSingleNode("//woot:price").text;
+					data.buyIt       = responseXML.selectSingleNode("//woot:purchaseurl").text;
+					data.wootoff     = (responseXML.selectSingleNode("//woot:wootoff").text == "True");
+					data.soldout     = (responseXML.selectSingleNode("//woot:soldout").text == "True");
+					data.progress    = responseXML.selectSingleNode("//woot:soldoutpercentage").text;
 					data.progress    = 100 - (data.progress * 100) + '%';
 					if (data.soldout || data.progress == '100%') data.progress = '0';
 					
-					data.subtitle    = xml.selectSingleNode("//woot:subtitle").text;
-					if (xml.selectSingleNode("//woot:teaser"))
-					    data.teaser  = xml.selectSingleNode("//woot:teaser").text;
+					data.subtitle    = responseXML.selectSingleNode("//woot:subtitle").text;
+					if (responseXML.selectSingleNode("//woot:teaser"))
+					    data.teaser  = responseXML.selectSingleNode("//woot:teaser").text;
 					else data.teaser = "";
-					data.description = xml.selectSingleNode("//item/description").text;
-					data.expires     = new Date(this.getResponseHeader("Expires"));
+					data.description = responseXML.selectSingleNode("//item/description").text;
+					data.expires     = new Date(getResponseHeader("Expires"));
 				} catch(ex) {
 					alert('Bad data. Proxy?');
 				}
