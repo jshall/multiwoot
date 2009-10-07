@@ -30,8 +30,9 @@ if( !window.System ) {
 				document:null
 			},
 			Settings:{
-				read:function(name){return this[name]},
-				write:function(name, value){this[name] = value}
+				read:function(name){var tmp = this.data[name]; return (tmp ? tmp : '')},
+				write:function(name, value){this.data[name] = value},
+				data: {}
 			}
 		}
 	};
