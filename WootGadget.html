@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Woot Gadget</title>
+		<link href="css/default.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="js/wootgadget.js"></script>
+	</head>
+	<body onload="loadMain();">
+		<div id="displayArea">
+			<div id="wootLogoDiv">
+				<a id="wootLink" href="http://www.woot.com"><img id="wootLogo" src="images/wootlogo.png" class="h" /></a>
+			</div>
+			<div id="wootPrefix"><img id="wootPrefixImage" src="images/blank.png" class="h" /></div>
+			<div id="wootDivider"><div id="wootMeterDiv"></div></div>
+			<div id="contentArea" onMouseOver="showDetail();" onMouseOut="hideDetail();">
+				<div id="itemImageDiv"><img id="itemImage" src="images/blank.png" /></div>
+				<div id="wootOffDiv1"><img id="wootOffImage1" src="images/gold-light.gif" class="w" /></div>
+				<div id="wootOffDiv2"><img id="wootOffImage2" src="images/gold-light.gif" class="w" /></div>
+				<div id="wootSoldOutDiv"><img id="wootSoldOutImage" src="images/soldout.png" class="w" /></div>
+				<div id="wootTextDiv"><a id="wootText" href="javascript:getDetail(this);"></a></div>
+				<div id="wootPriceDiv"><a id="wootPrice"></a></div>
+				<div id="prevWoot"><img src="images/prev.png" onClick="cycleWoot(-1);" /></div>
+				<div id="nextWoot"><img src="images/next.png" onClick="cycleWoot(1);" /></div>
+			</div>
+			<div id="wootErrorTextDiv"><span id="wootErrorText"></span></div>
+		</div>
+	</body> 
+</html>

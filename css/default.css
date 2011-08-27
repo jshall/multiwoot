@@ -1,0 +1,112 @@
+a:link {text-decoration: none; color: black}
+a:visited {text-decoration: none; color: black}
+a:active {text-decoration: none; color: black}
+a:hover {text-decoration: none; color: red}
+div {margin:0; position:absolute}
+img {border-style:none}
+img.w {width:100%}
+img.h {height:100%}
+body {font-family:Segoe UI;}
+
+#wootText {
+	font-size: 8pt;
+	visibility: hidden;
+}
+#wootPrice {
+	font-size: 10pt;
+	font-weight: bold;
+}
+#wootErrorText {
+	color: red;
+	font-size: 8pt;
+	visibility: hidden;
+	background-color:white;
+}
+
+#displayArea {
+	width:120;
+	height:135;
+}
+#wootLogoDiv {
+	width:100%;
+	height:35;
+	text-align:center;
+	overflow:hidden;
+	background-color:#4A6751;
+}
+#wootPrefix {
+	top:1;
+	left:40;
+	height:10;
+}
+
+#wootDivider {
+	top:35;
+	left:0;
+	width:100%;
+	border-top:2 solid #d59100;
+}
+#wootMeterDiv {
+	height:2;
+	background-color:#d59100;
+	overflow:hidden;
+	border-right:1 solid black;
+}
+
+#contentArea {
+	top:39;
+	width:100%;
+}
+#itemImageDiv {
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	text-align:center;
+}
+#prevWoot {
+	top:1;
+	left:2;
+}
+#nextWoot {
+	top:1;
+	right:2;
+}
+#wootOffDiv1 {
+	width:20;
+	bottom:0;
+	left:0;
+	text-align:center;
+	visibility:hidden;
+}
+#wootOffDiv2 {
+	width:20;
+	bottom:0;
+	right:0;
+	text-align:center;
+	visibility:hidden;
+}
+#wootSoldOutDiv {
+	width:100%;
+	bottom:5;
+	text-align:center;
+	visibility:hidden;
+}
+#wootTextDiv {
+	width:100%;
+	top: 20;
+	text-align:center;
+}
+#wootPriceDiv {
+	width:100%;
+	top:1;
+	text-align:center;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='images/halo.png');
+}
+
+#wootErrorTextDiv {
+	margin:4;
+	bottom:2;
+	width:100%;
+	text-align:center;
+}
