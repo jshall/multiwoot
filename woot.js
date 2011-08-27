@@ -131,37 +131,37 @@ Woot.prototype = {
 		}
 	},
 	connectionStateHandler: function() {
-		with(this) if (readyState == 4) {
+		if (this.readyState == 4) {
 			/*if ($('msg').innerText && $('msg').innerText.match(/fetch/i)) alert('');*/
-			if (responseXML == null) {
+			if (this.responseXML == null) {
 				alert('No response');
 			} else {
 				try {
-					data.link        = responseXML.selectSingleNode("//item/link").text;
-					data.title       = responseXML.selectSingleNode("//item/title").text;
-					data.image       = Array(
-					                   responseXML.selectSingleNode("//woot:thumbnailimage").text,
-					                   responseXML.selectSingleNode("//woot:standardimage").text);
-					data.price       = responseXML.selectSingleNode("//woot:price").text;
-					data.buyIt       = responseXML.selectSingleNode("//woot:purchaseurl").text;
-					data.wootoff     = (responseXML.selectSingleNode("//woot:wootoff").text == "True");
-					data.soldout     = (responseXML.selectSingleNode("//woot:soldout").text == "True");
-					data.progress    = responseXML.selectSingleNode("//woot:soldoutpercentage").text;
-					data.progress    = 100 - (data.progress * 100) + '%';
-					if (data.soldout || data.progress == '100%') data.progress = '0';
+					this.data.link        = this.responseXML.selectSingleNode("//item/link").text;
+					this.data.title       = this.responseXML.selectSingleNode("//item/title").text;
+					this.data.image       = Array(
+					                   this.responseXML.selectSingleNode("//woot:thumbnailimage").text,
+					                   this.responseXML.selectSingleNode("//woot:standardimage").text);
+					this.data.price       = this.responseXML.selectSingleNode("//woot:price").text;
+					this.data.buyIt       = this.responseXML.selectSingleNode("//woot:purchaseurl").text;
+					this.data.wootoff     = (this.responseXML.selectSingleNode("//woot:wootoff").text == "True");
+					this.data.soldout     = (this.responseXML.selectSingleNode("//woot:soldout").text == "True");
+					this.data.progress    = this.responseXML.selectSingleNode("//woot:soldoutpercentage").text;
+					this.data.progress    = 100 - (this.data.progress * 100) + '%';
+					if (this.data.soldout || this.data.progress == '100%') this.data.progress = '0';
 					
-					data.subtitle    = responseXML.selectSingleNode("//woot:subtitle").text;
-					if (responseXML.selectSingleNode("//woot:teaser"))
-					    data.teaser  = responseXML.selectSingleNode("//woot:teaser").text;
-					else data.teaser = "";
-					data.description = responseXML.selectSingleNode("//item/description").text;
-					data.expires     = new Date(getResponseHeader("Expires"));
+					this.data.subtitle    = this.responseXML.selectSingleNode("//woot:subtitle").text;
+					if (this.responseXML.selectSingleNode("//woot:teaser"))
+					    this.data.teaser  = this.responseXML.selectSingleNode("//woot:teaser").text;
+					else this.data.teaser = "";
+					this.data.description = this.responseXML.selectSingleNode("//item/description").text;
+					this.data.expires     = new Date(getResponseHeader("Expires"));
 				} catch(ex) {
 					alert('Bad data. Proxy?');
 				}
 			}
 			
-			data.show();
+			this.data.show();
 		}
 	},
 	prev: function(skipTimerReset) {
