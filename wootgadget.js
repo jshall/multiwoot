@@ -75,7 +75,7 @@ function resize() {
 		with(document.body.style)
 			width=130,
 			height=145,
-			background="url(images/WootGadgetBack_Docked.png) no-repeat",
+			background="url(WootGadgetBack_Docked.png) no-repeat",
 			margin=4;
 		with(displayArea.style)
 			width=121,
@@ -92,7 +92,7 @@ function resize() {
 		with(document.body.style)
 			width=296,
 			height=232,
-			background="url(images/WootGadgetBack_Undocked.png) no-repeat",
+			background="url(WootGadgetBack_Undocked.png) no-repeat",
 			margin=14;
 		with(displayArea.style)
 			width=262,
@@ -186,7 +186,7 @@ try { // create an XML document object
 			// clear default texts
 			wootText.innerText = "";
 			wootPrice.innerText = "";
-			itemImage.src = "images/blank.png";
+			itemImage.src = "blank.png";
 			wootSoldOutImage.style.visibility='hidden';
 			wootPriceDiv.style.visibility='visible';
 			wootOffImage1.style.visibility='hidden';
@@ -195,7 +195,7 @@ try { // create an XML document object
 			
 			// setup the header
 			wootLogoDiv.style.backgroundColor = wootPages[wootPage][1];
-			wootPrefixImage.src = "images/"+wootPages[wootPage][3];
+			wootPrefixImage.src = wootPages[wootPage][3];
 			
 			// make sure the XML loaded ok
 			if (oWootXmlDoc.parseError.errorCode != 0) {

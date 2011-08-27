@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <gadget>
-	<name>multiWoot</name>
+	<name>multiWoot_dev</name>
 	<namespace>microsoft.windows</namespace>
-	<version>1.0</version>
+	<version>0</version>
 	<author name="Josh Hall">
 		<info text="josh.s.hall@gmail.com"/>
 	</author>
