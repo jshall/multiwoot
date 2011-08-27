@@ -1,0 +1,28 @@
+body {
+	width:400;
+	height:400;
+	padding:8;
+	margin:0;
+	background-color:#4A6751;
+}
+#container {
+	width:384;
+	height:384;
+	padding-right:4;
+	overflow: auto;
+}
+#head {
+	color: #E1E1E1;
+	font-size: 20px;
+	line-height: 19px;
+	margin-bottom: 15px;
+	font-family:Georgia,Arial,Helvetica,Sans-Serif;
+}
+#desc {
+	color: #E5E5E5;
+	font-size: 13px;
+	line-height: 19px;
+	font-family:"Trebuchet MS",Arial,Helvetica,sans-serif;
+}
+p {padding-botom: 9px}
+a {color: #FFFFFF}

@@ -8,11 +8,11 @@
 	</author>
 	<description>A gadget that cycles trough the 3 woot sites and provides you with name, price, description, image and even woot meter for the current item.</description>
 	<icons>
-		<icon height="48" width="48" src="wootlogo.png"/>
+		<icon height="48" width="48" src="gadget.png"/>
 	</icons>
 	<hosts>
 		<host name="sidebar">
-			<base type="HTML" apiVersion="1.0.0" src="WootGadget.html"/>
+			<base type="HTML" apiVersion="1.0.0" src="index.html"/>
 			<permissions>Full</permissions>
 			<platform minPlatformVersion="0.3"/>
 		</host>

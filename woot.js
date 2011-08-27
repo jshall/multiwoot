@@ -1,6 +1,6 @@
 var wootPage = -1;
 var wootPages = Array(
-	Array("www.woot.com",   "#4A6751", "#355842", "blank.png"),
+	Array("www.woot.com",   "#4A6751", "#355842", "wwww.png"),
 	Array("shirt.woot.com", "#39648F", "#28537E", "shirt.png"),
 	Array("wine.woot.com",  "#690000", "#500000", "wine.png")
 );
@@ -75,7 +75,7 @@ function resize() {
 		with(document.body.style)
 			width=130,
 			height=145,
-			background="url(WootGadgetBack_Docked.png) no-repeat",
+			background="url(backSmall.png) no-repeat",
 			margin=4;
 		with(displayArea.style)
 			width=121,
@@ -92,7 +92,7 @@ function resize() {
 		with(document.body.style)
 			width=296,
 			height=232,
-			background="url(WootGadgetBack_Undocked.png) no-repeat",
+			background="url(backLarge.png) no-repeat",
 			margin=14;
 		with(displayArea.style)
 			width=262,
@@ -186,7 +186,7 @@ try { // create an XML document object
 			// clear default texts
 			wootText.innerText = "";
 			wootPrice.innerText = "";
-			itemImage.src = "blank.png";
+			itemImage.src = "www.png";
 			wootSoldOutImage.style.visibility='hidden';
 			wootPriceDiv.style.visibility='visible';
 			wootOffImage1.style.visibility='hidden';
