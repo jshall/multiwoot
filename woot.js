@@ -131,7 +131,7 @@ Woot.prototype = {
 			var req = new XMLHttpRequest();
 			req.data = this.current;
 			req.onreadystatechange = this.connectionStateHandler;
-			req.open("GET","http://"+this.current.prefix+".woot.com/salerss.aspx");
+			req.open("GET","http://api.woot.com/1/sales/current.rss/"+this.current.prefix+".woot.com");
 			req.send(null);/**/
 		} else {
 			this.current.show();
