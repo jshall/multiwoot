@@ -212,8 +212,8 @@ Woot.prototype = {
 		for( var i=0; order[i]; i++ ) {
 			var j = order[i+1] ? i+1 : 0;
 			while( order[j].match(/-/) ) j = order[j+1] ? j+1 : 0;
-			this.sites[order[i]].next = this.sites[order[j]];
-			this.sites[order[j]].prev = this.sites[order[i]];
+			this.sites[order[i].replace('-','')].next = this.sites[order[j].replace('-','')];
+			this.sites[order[j].replace('-','')].prev = this.sites[order[i].replace('-','')];
 			if( j > i + 1 ) i = j - 1;
 		}
 		this.timer.interval =
