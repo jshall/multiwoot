@@ -92,7 +92,7 @@ var Woot = function(/* list of data objects, not an array */) {
 	this.current = arguments[0];
 
 	if( System.Gadget.Settings.read("order") == '' ) System.Gadget.Settings.write("order", order);
-	if( System.Gadget.Settings.read("interval") == '' ) System.Gadget.Settings.write("interval", 5);
+	if( System.Gadget.Settings.read("interval") == '' ) System.Gadget.Settings.write("interval", 30);
 	if( System.Gadget.Settings.read("auto") == '' ) System.Gadget.Settings.write("auto", true);
 	if( System.Gadget.Settings.read("halt") == '' ) System.Gadget.Settings.write("halt", true);
 	this.applySettings();
@@ -127,7 +127,6 @@ Woot.prototype = {
 	},
 	update: function() {
 		if (!this.current.expires || this.current.expires <= new Date()) {
-			//alert('Fetching ' + this.current.prefix + '.woot.com ...');
 			var req = new XMLHttpRequest();
 			req.data = this.current;
 			req.onreadystatechange = this.connectionStateHandler;
@@ -139,35 +138,37 @@ Woot.prototype = {
 	},
 	connectionStateHandler: function() {
 		if (this.readyState == 4) {
-			/*if ($('msg').innerText && $('msg').innerText.match(/fetch/i)) alert('');*/
-			if (this.responseXML == null) {
+			if (this.responseText == '') {
 				alert('No response');
 			} else {
 				try {
-					this.data.link        = this.responseXML.selectSingleNode("//item/link").text;
-					this.data.title       = this.responseXML.selectSingleNode("//item/title").text;
+					var xml = new ActiveXObject("Microsoft.XMLDOM");
+					xml.async = "false";
+					xml.loadXML(this.responseText);
+					this.data.link        = xml.selectSingleNode("//item/link").text;
+					this.data.title       = xml.selectSingleNode("//item/title").text;
 					this.data.image       = Array(
-					                   this.responseXML.selectSingleNode("//woot:thumbnailimage").text,
-					                   this.responseXML.selectSingleNode("//woot:standardimage").text);
-					this.data.price       = this.responseXML.selectSingleNode("//woot:price").text;
-					this.data.buyIt       = this.responseXML.selectSingleNode("//woot:purchaseurl").text;
-					this.data.wootoff     = (this.responseXML.selectSingleNode("//woot:wootoff").text == "True");
-					this.data.soldout     = (this.responseXML.selectSingleNode("//woot:soldout").text == "True");
-					this.data.progress    = this.responseXML.selectSingleNode("//woot:soldoutpercentage").text;
+					                   xml.selectSingleNode("//woot:thumbnailimage").text,
+					                   xml.selectSingleNode("//woot:standardimage").text);
+					this.data.price       = xml.selectSingleNode("//woot:price").text;
+					this.data.buyIt       = xml.selectSingleNode("//woot:purchaseurl").text;
+					this.data.wootoff     = (xml.selectSingleNode("//woot:wootoff").text.toUpperCase() == "TRUE");
+					this.data.soldout     = (xml.selectSingleNode("//woot:soldout").text.toUpperCase() == "TRUE");
+					this.data.progress    = xml.selectSingleNode("//woot:soldoutpercentage").text;
 					this.data.progress    = 100 - (this.data.progress * 100) + '%';
 					if (this.data.soldout || this.data.progress == '100%') this.data.progress = '0';
 					
-					this.data.subtitle    = this.responseXML.selectSingleNode("//woot:subtitle").text;
-					if (this.responseXML.selectSingleNode("//woot:teaser"))
-					    this.data.teaser  = this.responseXML.selectSingleNode("//woot:teaser").text;
+					this.data.subtitle    = xml.selectSingleNode("//woot:subtitle").text;
+					if (xml.selectSingleNode("//woot:teaser"))
+					    this.data.teaser  = xml.selectSingleNode("//woot:teaser").text;
 					else this.data.teaser = "";
-					this.data.description = this.responseXML.selectSingleNode("//item/description").text;
-					this.data.expires     = new Date(getResponseHeader("Expires"));
+					this.data.description = xml.selectSingleNode("//item/description").text;
+					this.data.expires     = this.getResponseHeader("Expires");
+					this.data.expires     = this.data.expires ? new Date(this.data.expires) : null;
 				} catch(ex) {
 					alert('Bad data. Proxy?');
 				}
 			}
-			
 			this.data.show();
 		}
 	},

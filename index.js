@@ -6,7 +6,7 @@ function flyout() {
 
 function alert(errorMessage) {
 	clearTimeout(this.errorTimer);
-	if (errorMessage || errorMessage == '') {
+	if (!errorMessage) {
 		$('msg').innerHTML = '';
 		$('msg').style.visibility='hidden';
 	} else {
@@ -32,4 +32,5 @@ window.onload = function() {
 	System.Gadget.Flyout.onShow = woot.updateCallback;
 	System.Gadget.Flyout.onHide = woot.updateCallback;
 	System.Gadget.onSettingsClosed = woot.settingsCallback;
+	woot.update();
 }
