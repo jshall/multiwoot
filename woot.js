@@ -165,6 +165,7 @@ Woot.prototype = {
 					this.data.description = xml.selectSingleNode("//item/description").text;
 					this.data.expires     = this.getResponseHeader("Expires");
 					this.data.expires     = this.data.expires ? new Date(this.data.expires) : null;
+					alert();
 				} catch(ex) {
 					alert('Bad data. Proxy?');
 				}
