@@ -82,14 +82,21 @@ Data.prototype = {
 };
 var Woot = function(/* list of data objects, not an array */) {
 	this.sites = {};
+	var order = '';
 	for( var i = 0; arguments[i]; i++ ) {
 		if (arguments[i].prefix) {
 			this.sites[arguments[i].prefix] = arguments[i];
-			alert(arguments[i].prefix);
+			order += (order ? ',' : '') + arguments[i].prefix;
 		}
 	}
 	this.current = arguments[0];
+
+	if( System.Gadget.Settings.read("order") == '' ) System.Gadget.Settings.write("order", order);
+	if( System.Gadget.Settings.read("interval") == '' ) System.Gadget.Settings.write("interval", 5);
+	if( System.Gadget.Settings.read("auto") == '' ) System.Gadget.Settings.write("auto", true);
+	if( System.Gadget.Settings.read("halt") == '' ) System.Gadget.Settings.write("halt", true);
 	this.applySettings();
+
 	this.timer.reset(this);
 	this.resize();
 	var self = this;

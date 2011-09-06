@@ -19,14 +19,6 @@ function alert(errorMessage) {
 window.onload = function() {
 	System.Gadget.Flyout.file = "flyout.html";
 	System.Gadget.settingsUI = "settings.html";
-	if( System.Gadget.Settings.read("order") == '' )
-		System.Gadget.Settings.write("order", 'www,wine,shirt,sellout,kids');
-	if( System.Gadget.Settings.read("interval") == '' )
-		System.Gadget.Settings.write("interval", 5);
-	if( System.Gadget.Settings.read("auto") == '' )
-		System.Gadget.Settings.write("auto", true);
-	if( System.Gadget.Settings.read("halt") == '' )
-		System.Gadget.Settings.write("halt", true);
 	woot = new Woot(
 		//Data(prefix, logoColor, backgroundColor, textareaColor) 
 		new Data("www", "#61861E", "#61861E", "#91AB62"),
