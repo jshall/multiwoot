@@ -6,7 +6,7 @@ div {margin:0; position:absolute}
 img {border-style:none}
 img.w {width:100%}
 img.h {height:100%}
-body {font-family:Segoe UI;}
+body {font-family:Segoe UI; margin:0;}
 
 #title {
 	font-size: 8pt;
@@ -86,7 +86,7 @@ body {font-family:Segoe UI;}
 }
 #titleDiv {
 	width:100%;
-	top: 20;
+	top:30%;
 	text-align:center;
 }
 #priceDiv {

@@ -184,9 +184,9 @@ Woot.prototype = {
 	},
 	resize: function() {
 		if (System.Gadget.docked) {
-			with(document.body.style) width=130, height=145, margin=4,
-				background="url(backSmall.png) no-repeat";
-			with($('displayArea').style) width=121, height=135;
+			with(document.body.style) width=130, height=145;
+			back.src = "url(backSmall.png)";
+			with($('displayArea').style) width=121, height=135, margin=4;
 			$('contentArea').style.height=97;
 			$('title').style.fontSize="8pt";
 			$('price').style.fontSize="10pt";
@@ -194,9 +194,9 @@ Woot.prototype = {
 			window.size = 0;
 			$('itemImage').className = "w";
 		} else {
-			with(document.body.style) width=296, height=232, margin=14,
-				background="url(backLarge.png) no-repeat";
-			with($('displayArea').style) width=262, height=197;
+			with(document.body.style) width=296, height=232;
+			back.src = "url(backLarge.png)";
+			with($('displayArea').style) width=262, height=197, margin=14;
 			$('contentArea').style.height=159;
 			$('title').style.fontSize="12pt";
 			$('price').style.fontSize="14pt";
