@@ -25,11 +25,12 @@ var dimmer = {
 	}
 }
 
-var Data = function(prefix, logoColor, backgroundColor, textareaColor) {
+var Data = function(prefix, logoColor, backgroundColor, textareaColor, teaserColor) {
 	this.prefix = prefix;
 	this.logoColor = logoColor;
 	this.backgroundColor = backgroundColor;
 	this.textareaColor = textareaColor;
+	this.teaserColor = teaserColor;
 
 	this.link = '';
 	this.title = 'Unknown';
@@ -50,7 +51,7 @@ Data.prototype = {
 		$('price').innerHTML = this.price;
 		$('price').href = this.buyIt;
 		$('meter').style.width = this.progress;
-		cssStyles('.light')[0].visibility = (this.wootoff ? 'visible' : 'hidden');
+		cssStyles(document, '.light')[0].visibility = (this.wootoff ? 'visible' : 'hidden');
 		$('soldout').style.visibility = (this.soldout ? 'visible' : 'hidden');
 		$('priceDiv').style.visibility = (this.soldout ? 'hidden' : 'visible');
 		$('priceDiv').style.marginLeft = ($('contentArea').offsetWidth - $('priceDiv').offsetWidth ) / 2 + 'px';
@@ -77,6 +78,9 @@ Data.prototype = {
 			container.style.backgroundColor          = this.textareaColor;
 			container.style.scrollbarFaceColor       = this.backgroundColor;
 			container.style.scrollbarTrackColor      = this.textareaColor;
+
+			cssStyles(doc, '#teaser')[0].color = this.teaserColor;
+			cssStyles(doc, 'A')[0].color = this.teaserColor;
 		}
 	}
 };
@@ -165,6 +169,7 @@ Woot.prototype = {
 					this.data.description = xml.selectSingleNode("//item/description").text;
 					this.data.expires     = this.getResponseHeader("Expires");
 					this.data.expires     = this.data.expires ? new Date(this.data.expires) : null;
+					alert();
 				} catch(ex) {
 					alert('Bad data. Proxy?');
 				}
@@ -190,7 +195,7 @@ Woot.prototype = {
 			$('contentArea').style.height=97;
 			$('title').style.fontSize="8pt";
 			$('price').style.fontSize="10pt";
-			cssStyles('.light')[0].width=20;
+			cssStyles(document, '.light')[0].width=20;
 			window.size = 0;
 			$('itemImage').className = "w";
 		} else {
@@ -200,7 +205,7 @@ Woot.prototype = {
 			$('contentArea').style.height=159;
 			$('title').style.fontSize="12pt";
 			$('price').style.fontSize="14pt";
-			cssStyles('.light')[0].width=40;
+			cssStyles(document, '.light')[0].width=40;
 			window.size = 1;
 			$('itemImage').className = "h";
 		}

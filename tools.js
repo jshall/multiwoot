@@ -1,13 +1,14 @@
 function $(id) {return document.getElementById(id)}
 
-function cssStyles(selector) {
+function cssStyles(ss, selector) {
 	var a = [];
-	for (var j in document.styleSheets) 
-		if (document.styleSheets[j].rules) 
-			for (var i in document.styleSheets[j].rules) 
-				if (document.styleSheets[j].rules[i].selectorText) 
-					if (document.styleSheets[j].rules[i].selectorText == selector)
-						a[a.length] = document.styleSheets[j].rules[i].style;
+	ss = ss.styleSheets;
+	for (var j in ss) 
+		if (ss[j].rules) 
+			for (var i in ss[j].rules) 
+				if (ss[j].rules[i].selectorText) 
+					if (ss[j].rules[i].selectorText == selector)
+						a[a.length] = ss[j].rules[i].style;
 	return a;
 }
 
