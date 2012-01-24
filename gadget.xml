@@ -5,7 +5,18 @@
 	<version>0</version>
 	<author name="Josh Hall"><info text="josh.s.hall@gmail.com"/></author>
 	<description>A gadget that cycles trough the multiple sites providing you with name, price, description, image and even woot meter for the current item.</description>
-	<icons><icon height="130" width="145" src="gadget.png"/></icons>
+	<icons>
+		<icon height="16" width="16" src="multiWoot.ico"/>
+		<icon height="24" width="24" src="multiWoot.ico"/>
+		<icon height="32" width="32" src="multiWoot.ico"/>
+		<icon height="48" width="48" src="multiWoot.ico"/>
+		<icon height="64" width="64" src="multiWoot.ico"/>
+		<icon height="96" width="96" src="multiWoot.ico"/>
+		<icon height="128" width="128" src="multiWoot.ico"/>
+		<icon height="192" width="192" src="multiWoot.ico"/>
+		<icon height="256" width="256" src="multiWoot.ico"/>
+		<icon height="512" width="512" src="multiWoot.ico"/>
+	</icons>
 	<hosts>
 		<host name="sidebar">
 			<base type="HTML" apiVersion="1.0.0" src="index.html"/>
