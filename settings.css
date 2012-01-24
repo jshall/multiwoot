@@ -9,9 +9,9 @@ body {
 }
 #sites .panel {
 	background-color: white;
-	height: 20px;
+	height: 17px;
 	margin: 2px;
-	padding: 2px;
+	padding: 1px;
 	float: left;
 	border: 2 outset;
 }

@@ -34,7 +34,7 @@ var Data = function(prefix, logoColor, backgroundColor, textareaColor, teaserCol
 
 	this.link = '';
 	this.title = 'Unknown';
-	this.image = Array('www.png','www.png');
+	this.image = Array('blank.png','blank.png');
 	this.price = '$0.00';
 	this.buyIt = '';
 	this.progress = null;
@@ -42,7 +42,7 @@ var Data = function(prefix, logoColor, backgroundColor, textareaColor, teaserCol
 Data.prototype = {
 	show: function() {
 		$('logo').style.backgroundColor = this.logoColor;
-		$('prefixImage').src = this.prefix+'.png';
+		$('prefixImage').src = this.prefix.replace('www','blank')+'.png';
 		
 		$('home').href = this.link;
 		$('title').innerHTML = this.title;
