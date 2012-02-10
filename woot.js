@@ -74,7 +74,7 @@ Data.prototype = {
 			teaser.innerHTML = this.teaser;
 			desc.innerHTML = this.description;
 			
-			doc.body.style.backgroundColor           = this.backgroundColor;
+			container.style.borderColor              = this.backgroundColor;
 			container.style.backgroundColor          = this.textareaColor;
 			container.style.scrollbarFaceColor       = this.backgroundColor;
 			container.style.scrollbarTrackColor      = this.textareaColor;
