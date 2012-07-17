@@ -16,17 +16,23 @@ function alert(errorMessage) {
 	}
 }
 
+function size() {
+	return (System.Gadget.docked ? 0 : 1);
+}
+
 window.onload = function() {
 	System.Gadget.Flyout.file = "flyout.html";
 	System.Gadget.settingsUI = "settings.html";
 	woot = new Woot(
-		//Data(prefix, logoColor, backgroundColor, textareaColor, teaserColor) 
-		new Data("www",     "#61861E", "#61861E", "#91AB62", "#FFFFFF"),
-		new Data("wine",    "#8A1B26", "#8A1B26", "#AD5D62", "#FFFFFF"),
-		new Data("shirt",   "#216294", "#216294", "#5A8BB0", "#FFFFFF"),
-		new Data("sellout", "#4B437D", "#4B437D", "#8A85AA", "#FFFFFF"),
-		new Data("kids",    "#E19433", "#FFE086", "#E19433", "#FFFFFF"),
-		new Data("home",    "#D35500", "#EFEAE6", "#EFEAE6", "#D35500")
+		//Data(prefix, logoColor, backgroundColor, textareaColor, teaserColor, logoWidth, logoPos) 
+		new Data("www",     "#669510", "#7CA71E", "#3E6906", "#FFFFFF", "57px", "-88px -1px"),
+		new Data("tech",    "#108487", "#46A0A2", "#095153", "#FFFFFF", "48px", "-88px -199px"),
+		new Data("home",    "#D35500", "#DB6D00", "#B83000", "#D35500", "59px", "-88px -45px"),
+		new Data("sport",   "#6ABB01", "#8CCA3B", "#407601", "#FFFFFF", "54px", "-88px -177px"),
+		new Data("kids",    "#EFA602", "#FFBD18", "#FF9909", "#FFFFFF", "44px", "-88px -67px"),
+		new Data("shirt",   "#0071B0", "#0087BE", "#004789", "#FFFFFF", "48px", "-88px -133px"),
+		new Data("wine",    "#891B28", "#9C2F3F", "#5E0C13", "#FFFFFF", "51px", "-88px -155px"),
+		new Data("sellout", "#467C32", "#5E914A", "#265019", "#FFFFFF", "67px", "-88px -110px")
 	);
 	System.Gadget.onDock = woot.resizeCallback;
 	System.Gadget.onUndock = woot.resizeCallback;

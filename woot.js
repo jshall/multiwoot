@@ -25,12 +25,14 @@ var dimmer = {
 	}
 }
 
-var Data = function(prefix, logoColor, backgroundColor, textareaColor, teaserColor) {
+var Data = function(prefix, logoColor, backgroundColor, textareaColor, teaserColor, logoWidth, logoPos) {
 	this.prefix = prefix;
 	this.logoColor = logoColor;
 	this.backgroundColor = backgroundColor;
 	this.textareaColor = textareaColor;
 	this.teaserColor = teaserColor;
+	this.logoWidth = logoWidth;
+	this.logoPos = logoPos;
 
 	this.link = '';
 	this.title = 'Unknown';
@@ -41,13 +43,13 @@ var Data = function(prefix, logoColor, backgroundColor, textareaColor, teaserCol
 };
 Data.prototype = {
 	show: function() {
-		$('logo').style.backgroundColor = this.logoColor;
-		$('prefixImage').src = this.prefix.replace('www','blank')+'.png';
+		$('logo').href = this.link;
+		$('logo').style.width = this.logoWidth;
+		$('logo').style.backgroundPosition = this.logoPos;
+		$('logoDiv').style.filter = 'filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=\''+this.backgroundColor+'\', endColorstr=\''+this.textareaColor+'\')';
 		
-		$('home').href = this.link;
 		$('title').innerHTML = this.title;
-		if (typeof(size) != 'undefined')
-		$('itemImage').src = this.image[size];
+		$('itemImage').src = this.image[size()];
 		$('price').innerHTML = this.price;
 		$('price').href = this.buyIt;
 		$('meter').style.width = this.progress;
@@ -196,7 +198,6 @@ Woot.prototype = {
 			$('title').style.fontSize="8pt";
 			$('price').style.fontSize="10pt";
 			cssStyles(document, '.light')[0].width=20;
-			window.size = 0;
 			$('itemImage').className = "w";
 		} else {
 			with(document.body.style) width=296, height=232;
@@ -206,10 +207,8 @@ Woot.prototype = {
 			$('title').style.fontSize="12pt";
 			$('price').style.fontSize="14pt";
 			cssStyles(document, '.light')[0].width=40;
-			window.size = 1;
 			$('itemImage').className = "h";
 		}
-		$('prefix').style.left = $('logo').offsetLeft+27;
 		this.current.show();
 	},
 	applySettings: function() {

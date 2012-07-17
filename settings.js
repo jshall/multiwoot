@@ -44,7 +44,7 @@ function load() {
 		var item = document.createElement('div');
 		item.prefix = order[i].replace(/-/,'');
 		item.className = 'panel';
-		item.innerHTML = '<img src="' + item.prefix + '.png" />';
+		item.innerHTML = item.prefix;
 		desc.parentElement.insertBefore(item, desc);
 		w += item.offsetWidth + 4;
 		item.onmousedown = select;

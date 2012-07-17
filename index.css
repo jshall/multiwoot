@@ -22,8 +22,9 @@ body {font-family:Segoe UI; margin:0;}
 	height:135;
 }
 #logo {
-	margin-top: 2px;
-	height: 27px;
+	margin-top: 7px;
+	height: 19px;
+	background-image: url(sprite.png);
 }
 #logoDiv {
 	width: 100%;
@@ -32,15 +33,10 @@ body {font-family:Segoe UI; margin:0;}
 	text-align: center;
 	overflow: hidden;
 }
-#prefix {
-	top:2;
-	height:10;
-}
 
 #divider {
 	top:35;
-	left:3%;
-	width:94%;
+	width: 100%;
 	height:3;
 	overflow:hidden;
 	text-align: center;
