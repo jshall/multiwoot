@@ -8,30 +8,32 @@ body {
 	width: 419px;
 	height: 500px;
 	overflow: auto;
-	border: solid 6px transparent;
-	margin: 2px;
 	padding: 5px;
-	font-size: 12px;
-	font-family: "Trebuchet MS",Trebuchet,Calibri,Tahoma,Arial,sans-serif;
+	font-size: 14px;
+	font-family: Helvetica,"Helvetica Neue",Arial,sans-serif;
+	line-height: 18px;
+	background-color: white;
 }
 #head {
-	font-variant: small-caps;
-	font-size: 1.6em;
-	line-height: 1.6em;
-	margin-bottom: 15px;
+	font-family: Museo,Helvetica,"Helvetica Neue",Arial,sans-serif;
+	font-size: 20px;
+	line-height: 22px;
+	margin-bottom: 10px;
 }
 #teaser {
-	font-size: 2em;
-	line-height: 1.2em;
-	margin-bottom: 25px;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 18px;
+	margin-bottom: 10px;
 }
 #desc p {
-	margin-bottom: 1em;
+	margin-bottom: 10px;
 }
 #desc table {
 	font-size: 12px;
 	border-collapse: collapse;
 	border: solid 1px #000;
+	margin-bottom: 10px;
 }
 #desc table td {
 	border-top: solid 1px #000;

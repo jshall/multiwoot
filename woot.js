@@ -75,14 +75,6 @@ Data.prototype = {
 			}
 			teaser.innerHTML = this.teaser;
 			desc.innerHTML = this.description;
-			
-			container.style.borderColor              = this.backgroundColor;
-			container.style.backgroundColor          = this.textareaColor;
-			container.style.scrollbarFaceColor       = this.backgroundColor;
-			container.style.scrollbarTrackColor      = this.textareaColor;
-
-			cssStyles(doc, '#teaser')[0].color = this.teaserColor;
-			cssStyles(doc, 'A')[0].color = this.teaserColor;
 		}
 	}
 };
